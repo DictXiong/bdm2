@@ -1,0 +1,211 @@
+\ProvidesPackage{bdm2}[2020/02/11 v2.0 Dict Xiong's Self-use Macro]
+
+\RequirePackage{bm,enumerate,multicol,amsmath,upgreek}
+\makeatletter
+
+%Common Set
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\trans}[1]{#1^\mathrm{T}}
+\DeclareMathOperator{\rank}{r}
+\DeclareMathOperator{\image}{Im}
+\DeclareMathOperator{\expect}{E}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\erf}{erf}
+
+%	roman numerals
+\newcommand{\rmnum}[1]{{\romannumeral #1}}
+\newcommand{\Rmnum}[1]{{\expandafter\@slowromancap\romannumeral #1@}}
+
+%Half-commom-half-special set
+\DeclareMathOperator{\dif}{d\!}% 这个定义来自 commath 宏包 (p247)
+\newcommand{\diff}[2][]%
+{\if\relax\detokenize{#1}\relax \dif#2 \else \operatorname{d}^{#1}\!#2 \fi}
+\newcommand{\patl}[2][]%
+{\if\relax\detokenize{#1}\relax \partial#2 \else \partial^{#1}#2 \fi}
+\newcommand{\dfunc}[3][]{\frac{\diff[#1]{#2}}{\diff{#3}^{#1}}}
+\newcommand{\pfunc}[3][]{\frac{\patl[#1]{#2}}{\patl{#3}^{#1}}}
+\newcommand{\ddfunc}[3][]{\dfrac{\diff[#1]{#2}}{\diff{#3}^{#1}}}
+\newcommand{\dpfunc}[3][]{\dfrac{\patl[#1]{#2}}{\patl{#3}^{#1}}}
+
+\newcommand{\ui}{\mathrm{i}}
+\newcommand{\ue}{\mathrm{e}}
+\newcommand{\upi}{\uppi} % 原来的 \mralpha 系列根本不会起作用.
+
+
+%Special Set
+\newcommand{\bdint}[4]{\int_{#2}^{#3}#4\diff{#1}} %不加入 \bdiint 等的原因是多重积分的积分限和微元都比较复杂且多变
+\newcommand{\bdlim}[2]{\lim\limits_{#1\to #2}}
+\newcommand{\bdsum}[2]{\sum\limits_{#1}^{#2}}
+\newcommand{\bdprod}[2]{\prod\limits_{#1}^{#2}}
+
+\newenvironment{mcolenu}[2][]%
+{\vspace{-0.3cm}\begin{multicols}{#2}\begin{enumerate}[#1]}{\end{enumerate}\end{multicols}\vspace{-0.3cm}}
+
+\newenvironment{mcolitm}[2][]%
+{\vspace{-0.3cm}\begin{multicols}{#2}\begin{itemize}[#1]}{\end{itemize}\end{multicols}\vspace{-0.3cm}}
+
+\newenvironment{bdquote}[1][]%
+{\def\@a{indent}\def\@b{#1}\begin{small}
+    \ifx\@a\@b\begin{quotation}\else\begin{quote}\fi\itshape}%
+{\ifx\@a\@b\end{quotation}\else\end{quote}\fi\end{small}}% parameter 'indent' will give indented paragraphs. 
+
+
+%Short Set
+%	bm
+%		A-Z
+\newcommand{\bmA}{\bm{A}}
+\newcommand{\bmB}{\bm{B}}
+\newcommand{\bmC}{\bm{C}}
+\newcommand{\bmD}{\bm{D}}
+\newcommand{\bmE}{\bm{E}}
+\newcommand{\bmF}{\bm{F}}
+\newcommand{\bmG}{\bm{G}}
+\newcommand{\bmH}{\bm{H}}
+\newcommand{\bmI}{\bm{I}}
+\newcommand{\bmJ}{\bm{J}}
+\newcommand{\bmK}{\bm{K}}
+\newcommand{\bmL}{\bm{L}}
+\newcommand{\bmM}{\bm{M}}
+\newcommand{\bmN}{\bm{N}}
+\newcommand{\bmO}{\bm{0}}%Specially
+\newcommand{\bmP}{\bm{P}}
+\newcommand{\bmQ}{\bm{Q}}
+\newcommand{\bmR}{\bm{R}}
+\newcommand{\bmS}{\bm{S}}
+\newcommand{\bmT}{\bm{T}}
+\newcommand{\bmU}{\bm{U}}
+\newcommand{\bmV}{\bm{V}}
+\newcommand{\bmW}{\bm{W}}
+\newcommand{\bmX}{\bm{X}}
+\newcommand{\bmY}{\bm{Y}}
+\newcommand{\bmZ}{\bm{Z}}
+%		a-z
+\newcommand{\bma}{\bm{a}}
+\newcommand{\bmb}{\bm{b}}
+\newcommand{\bmc}{\bm{c}}
+\newcommand{\bmd}{\bm{d}}
+\newcommand{\bme}{\bm{e}}
+\newcommand{\bmf}{\bm{f}}
+\newcommand{\bmg}{\bm{g}}
+\newcommand{\bmh}{\bm{h}}
+\newcommand{\bmi}{\bm{i}}
+\newcommand{\bmj}{\bm{j}}
+\newcommand{\bmk}{\bm{k}}
+\newcommand{\bml}{\bm{l}}
+\newcommand{\bmm}{\bm{m}}
+\newcommand{\bmn}{\bm{n}}
+\newcommand{\bmo}{\bm{o}}
+\newcommand{\bmp}{\bm{p}}
+\newcommand{\bmq}{\bm{q}}
+\newcommand{\bmr}{\bm{r}}
+\newcommand{\bms}{\bm{s}}
+\newcommand{\bmt}{\bm{t}}
+\newcommand{\bmu}{\bm{u}}
+\newcommand{\bmv}{\bm{v}}
+\newcommand{\bmw}{\bm{w}}
+\newcommand{\bmx}{\bm{x}}
+\newcommand{\bmy}{\bm{y}}
+\newcommand{\bmz}{\bm{z}}
+
+%		greek letters
+\newcommand{\bmalpha}{\bm{\alpha}}
+\newcommand{\bmvarepsilon}{\bm{\varepsilon}}
+\newcommand{\bmiota}{\bm{\iota}}
+\newcommand{\bmxi}{\bm{\xi}}
+\newcommand{\bmvarrho}{\bm{\varrho}}
+\newcommand{\bmphi}{\bm{\phi}}
+\newcommand{\bmGamma}{\bm{\Gamma}}
+\newcommand{\bmPi}{\bm{\Pi}}
+\newcommand{\bmOmega}{\bm{\Omega}}
+\newcommand{\bmbeta}{\bm{\beta}}
+\newcommand{\bmzeta}{\bm{\zeta}}
+\newcommand{\bmkappa}{\bm{\kappa}}
+\newcommand{\bmsigma}{\bm{\sigma}}
+\newcommand{\bmvarphi}{\bm{\varphi}}
+\newcommand{\bmDelta}{\bm{\Delta}}
+\newcommand{\bmSigma}{\bm{\Sigma}}
+\newcommand{\bmgamma}{\bm{\gamma}}
+\newcommand{\bmeta}{\bm{\eta}}
+\newcommand{\bmlambda}{\bm{\lambda}}
+\newcommand{\bmpi}{\bm{\pi}}
+\newcommand{\bmvarsigma}{\bm{\varsigma}}
+\newcommand{\bmchi}{\bm{\chi}}
+\newcommand{\bmTheta}{\bm{\Theta}}
+\newcommand{\bmUpsilon}{\bm{\Upsilon}}
+\newcommand{\bmdelta}{\bm{\delta}}
+\newcommand{\bmtheta}{\bm{\theta}}
+\newcommand{\bmmu}{\bm{\mu}}
+\newcommand{\bmvarpi}{\bm{\varpi}}
+\newcommand{\bmtau}{\bm{\tau}}
+\newcommand{\bmpsi}{\bm{\psi}}
+\newcommand{\bmLambda}{\bm{\Lambda}}
+\newcommand{\bmPhi}{\bm{\Phi}}
+\newcommand{\bmepsilon}{\bm{\epsilon}}
+\newcommand{\bmvartheta}{\bm{\vartheta}}
+\newcommand{\bmnu}{\bm{\nu}}
+\newcommand{\bmrho}{\bm{\rho}}
+\newcommand{\bmupsilon}{\bm{\upsilon}}
+\newcommand{\bmomega}{\bm{\omega}}
+\newcommand{\bmXi}{\bm{\Xi}}
+\newcommand{\bmPsi}{\bm{\Psi}}
+
+%	mathrm
+%		A-Z
+\newcommand{\mrA}{\mathrm{A}}
+\newcommand{\mrB}{\mathrm{B}}
+\newcommand{\mrC}{\mathrm{C}}
+\newcommand{\mrD}{\mathrm{D}}
+\newcommand{\mrE}{\mathrm{E}}
+\newcommand{\mrF}{\mathrm{F}}
+\newcommand{\mrG}{\mathrm{G}}
+\newcommand{\mrH}{\mathrm{H}}
+\newcommand{\mrI}{\mathrm{I}}
+\newcommand{\mrJ}{\mathrm{J}}
+\newcommand{\mrK}{\mathrm{K}}
+\newcommand{\mrL}{\mathrm{L}}
+\newcommand{\mrM}{\mathrm{M}}
+\newcommand{\mrN}{\mathrm{N}}
+\newcommand{\mrO}{\mathrm{O}}
+\newcommand{\mrP}{\mathrm{P}}
+\newcommand{\mrQ}{\mathrm{Q}}
+\newcommand{\mrR}{\mathrm{R}}
+\newcommand{\mrS}{\mathrm{S}}
+\newcommand{\mrT}{\mathrm{T}}
+\newcommand{\mrU}{\mathrm{U}}
+\newcommand{\mrV}{\mathrm{V}}
+\newcommand{\mrW}{\mathrm{W}}
+\newcommand{\mrX}{\mathrm{X}}
+\newcommand{\mrY}{\mathrm{Y}}
+\newcommand{\mrZ}{\mathrm{Z}}
+%		a-z
+\newcommand{\mra}{\mathrm{a}}
+\newcommand{\mrb}{\mathrm{b}}
+\newcommand{\mrc}{\mathrm{c}}
+\newcommand{\mrd}{\mathrm{d}}
+\newcommand{\mre}{\mathrm{e}}
+\newcommand{\mrf}{\mathrm{f}}
+\newcommand{\mrg}{\mathrm{g}}
+\newcommand{\mrh}{\mathrm{h}}
+\newcommand{\mri}{\mathrm{i}}
+\newcommand{\mrj}{\mathrm{j}}
+\newcommand{\mrk}{\mathrm{k}}
+\newcommand{\mrl}{\mathrm{l}}
+\newcommand{\mrm}{\mathrm{m}}
+\newcommand{\mrn}{\mathrm{n}}
+\newcommand{\mro}{\mathrm{o}}
+\newcommand{\mrp}{\mathrm{p}}
+\newcommand{\mrq}{\mathrm{q}}
+\newcommand{\mrr}{\mathrm{r}}
+\newcommand{\mrs}{\mathrm{s}}
+\newcommand{\mrt}{\mathrm{t}}
+\newcommand{\mru}{\mathrm{u}}
+\newcommand{\mrv}{\mathrm{v}}
+\newcommand{\mrw}{\mathrm{w}}
+\newcommand{\mrx}{\mathrm{x}}
+\newcommand{\mry}{\mathrm{y}}
+\newcommand{\mrz}{\mathrm{z}}
+
+\makeatother

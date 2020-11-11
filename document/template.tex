@@ -1,0 +1,148 @@
+%-required
+\documentclass[UTF8,no-math]{ctexart}
+\AtBeginDocument{\usepackage[l2tabu, orthodox]{nag}} %correct package use
+\usepackage{geometry} %Use \geometry to modify the page size
+%\usepackage{ctex} %disable if write in English
+\usepackage{amsmath}
+\usepackage{xfrac} %\sfrac
+\usepackage[table]{xcolor}%colored text or box, or even table (\cellcolor)
+\usepackage[normalem]{ulem} % \sout{1234} to generate delete lines, and \uline for continous underlines.
+\usepackage{bm} %use \bm to create bold math style.
+\usepackage{upgreek} %\use \uppi to get const pi.
+\usepackage{mathtools}%dcases, \overbracket, \prescript, \shortintertext
+\usepackage{graphicx} %To use \includegraphics
+\usepackage{booktabs}%use \toprule \midrule \bottomrule
+\usepackage{siunitx} %use \SI to display units.
+\usepackage{enumerate} %use \begin{enumerate} and \item
+\usepackage{enumitem} %detailed adjustments for enumerate
+\usepackage{caption}%detailed adjustments to captions
+\usepackage{subcaption}%use subtable or subfigure environment
+\usepackage{float}%use \begin{table}[H] to get non-float boxes
+\usepackage{bdm2}
+
+%-optional
+\usepackage[lf,minionint,mathtabular]{MinionPro}%Lining Number and favorite Minion Pro!
+\usepackage{fontspec}
+\setmainfont{Minion Pro}
+
+\usepackage{pgfplots}%to draw!!!
+%\usepgfplotslibrary{polar}%to use \begin{polaraxis}!!
+%\usepackage[all,pdf]{xy}
+%\usepackage[inline]{asymptote}
+\usepackage{esvect}%use \vv to produce a right arrow above.
+\usepackage{multirow}%use \multirow{n}{*}{sth} to combine n cells in a single col
+\usepackage{makecell}% to use '\\' in table cells.
+%to combine n cells in a single row of a table, use \multicolumn{c}{n}{sth}
+%\usepackage{diagbox}%split table headers, see p295
+\usepackage{pdfpages}%use \includepdf[pages={1}]{*.pdf} to insert pdf
+%\usepackage{pdflscape} %use landscape environment with pdflatex
+%\usepackage{ragged2e} % RaggedLeft, justify
+%\usepackage[version=4]{mhchem} %use \ce to produce chemical equations
+%\usepackage{lipsum}%use \lipsum[num] to create random text
+%\usepackage{framed} %framed environment can create boxes
+%\usepackage{varwidth}&to replace minipage
+
+\usepackage{multicol}%use \begin{multicols}{n} to divide the page
+%\usepackage{cases}%use \numcases to build multiline equations with labels
+%\usepackage{galois}%use \comp to g·y
+%\usepackage{extarrows}%use \xlongequal
+%\usepackage{mathrsfs}%use \mathscr{E} to get the symbol of electromotive force 'E'
+%\usepackage{fontawesome} % frontend engineers have cried!
+%\usepackage{listings}%\begin{lstlistings}[language=C] coding...syntax \end{lstlistings} 
+\usepackage{hyperref} % \href{URL}{text} and \url{URL}
+%\usepackage{nameref} % \nameref{label} to get ref name
+%\usepackage{lastpage} %\pageref{LastPage} to get page number of the last page
+%\usepackage{breqn} %dmath envirn can split quations autoly, with bug
+%\usepackage{syntonly}\syntaxonly % check syntax without building
+
+%-XUANology
+\usepackage{microtype}
+
+
+%-if references are required, enable these two lines and edit ref.bib. cite with \cite{}
+%\usepackage[backend=biber,sorting=,style=,]{biblatex}
+%\addbibresource{ref.bib}
+
+
+%-package config
+%\pagestyle{headings}
+
+\usepgfplotslibrary{external} % Automatic externalization. -shell-escape should be added to compiling command.
+\pgfplotsset{
+    compat=1.16,
+    /tikz/font=\small,
+}
+
+\sisetup{range-phrase=-,%
+    group-digits=false,%
+    list-pair-separator={, },%
+    list-final-separator={, },%
+    binary-units=true,% like \mebi or \gibi
+}
+\captionsetup{labelsep=quad,
+    font+={small},
+    labelfont+={bf},
+    margin=4em,
+    figurename=图,
+    tablename=表,
+}
+\renewcommand{\figureautorefname}{图}
+\renewcommand{\tableautorefname}{表}
+%\geometry{a4paper, top=2.54cm, right=3.18cm, bottom=2.54cm, left=3.18cm} %enable if want a page identical to Microsoft Word A4
+%\mhchemoptions{layout=stacked}%eable if use mhchem
+%\newfontfamily\consolas{Consolas}%新的等宽字体族
+\setlength{\columnseprule}{.4pt}
+%\lstset{%enable if use listings
+%    numbers=left, 
+%    numberstyle= \footnotesize, 
+%    basicstyle=\ttfamily, 
+%    keywordstyle= \bfseries,
+%    commentstyle= \itshape\color{red!50!green!50!blue!50}, 
+%    stringstyle=\sffamily\bfseries\color{blue},
+%    frame=shadowbox, % 阴影效果
+%    rulesepcolor= \color{ red!20!green!20!blue!20},
+%    breaklines,%自动换行
+%    escapechar=',%设置抑音符为转义字符. 但我不晓得它为什么不起作用.
+%    columns=flexible,
+%}
+\newtheorem{theorem}{定理}
+\newtheorem{inference}{推论}[theorem]
+\newtheorem{definition}{定义}
+\newtheorem{proof}{证明}
+\newcommand{\D}{\displaystyle}
+\newcommand{\T}{\textstyle}
+
+% loose floating policy
+%\setcounter{topnumber}{3}
+%\setcounter{bottomnumber}{2}
+%\setcounter{totalnumber}{7}
+%\renewcommand{\bottomfraction}{0.7}
+%\renewcommand{\textfraction}{0.1}
+
+%-length adjustments
+\setlength{\lineskiplimit}{2.625bp}
+\setlength{\lineskip}{2.625bp} % provent a text line with high contents like \dfrac reach too close to adjacence.
+
+
+%-macro definations
+\makeatletter
+\newcommand{\hl}[1]{\colorbox{yellow}{#1}} %需要更好的实现
+\makeatother
+
+
+%-prebody
+
+%\hypersetup{
+%    pdftitle={},
+%    pdfauthor={},
+%    pdfcreator={},
+%    pdflang={},
+%}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+	\maketitle
+\end{document}
